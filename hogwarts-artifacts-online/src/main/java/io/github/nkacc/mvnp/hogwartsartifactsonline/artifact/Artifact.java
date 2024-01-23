@@ -1,5 +1,7 @@
 package io.github.nkacc.mvnp.hogwartsartifactsonline.artifact;
 
+import io.github.nkacc.mvnp.hogwartsartifactsonline.wizard.Wizard;
+
 import java.io.Serializable;
 
 public class Artifact implements Serializable {
@@ -8,6 +10,8 @@ public class Artifact implements Serializable {
     private String name;
     private String description;
     private String imageUrl;
+
+    private Wizard owner;
 
     public Artifact() {
     }
@@ -42,6 +46,14 @@ public class Artifact implements Serializable {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Wizard getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Wizard owner) {
+        this.owner = owner;
     }
 
 }
