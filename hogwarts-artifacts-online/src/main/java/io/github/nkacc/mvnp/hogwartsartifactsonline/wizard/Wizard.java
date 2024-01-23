@@ -1,15 +1,21 @@
 package io.github.nkacc.mvnp.hogwartsartifactsonline.wizard;
 
 import io.github.nkacc.mvnp.hogwartsartifactsonline.artifact.Artifact;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 import java.io.Serializable;
 import java.util.List;
 
+@Entity
 public class Wizard implements Serializable {
 
+    @Id
     private Integer id;
     private String name;
 
+    @OneToMany(mappedBy = "owner") // A bidirectional association via a foreign key
     private List<Artifact> artifacts;
     // multivalued_attribute for a derived attribute(numberOfArtifacts)
 
