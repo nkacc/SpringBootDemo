@@ -1,6 +1,7 @@
 package io.github.nkacc.mvnp.hogwartsartifactsonline.wizard;
 
 import io.github.nkacc.mvnp.hogwartsartifactsonline.artifact.Artifact;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -15,7 +16,8 @@ public class Wizard implements Serializable {
     private Integer id;
     private String name;
 
-    @OneToMany(mappedBy = "owner") // A bidirectional association via a foreign key
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "owner")
+    // A bidirectional association via a foreign key
     private List<Artifact> artifacts;
     // multivalued_attribute for a derived attribute(numberOfArtifacts)
 
