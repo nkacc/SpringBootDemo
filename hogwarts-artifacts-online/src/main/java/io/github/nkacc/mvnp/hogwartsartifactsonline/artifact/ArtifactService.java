@@ -13,4 +13,8 @@ public class ArtifactService {
         this.artifactRepository = artifactRepository;
     }
 
+    public Artifact findById(String artifactId){
+        return null;
+    }
+
 }
