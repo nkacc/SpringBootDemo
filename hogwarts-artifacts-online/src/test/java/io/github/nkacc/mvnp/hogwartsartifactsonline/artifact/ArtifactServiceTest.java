@@ -13,6 +13,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class ArtifactServiceTest {
@@ -86,6 +87,27 @@ class ArtifactServiceTest {
 
     @Test
     void findByIdFailure() {
+        // Given
+        /// Fake not needed
+        /// Mock
+        when(artifactRepository.findById(any(String.class))).thenReturn(Optional.empty());
+
+        // When & Then
+        /// Call & Assert
+        /* // exception assertion, standard style ...
+           assertThatThrownBy(() -> { throw new Exception("boom!"); }).hasMessage("boom!");
+           // ... or BDD style
+           Throwable thrown = catchThrowable(() -> { throw new Exception("boom!"); });
+           assertThat(thrown).hasMessageContaining("boom");
+        I like `assertThatThrownBy` better */
+        assertThatThrownBy(
+                () -> artifactService.findById("1250808601744904192")
+        ).isInstanceOf(ArtifactNotFoundException.class)
+                .hasMessage("Could not find Artifact with Id:1250808601744904192 :(");
+        /// Verify
+        verify(artifactRepository, times(1))
+                .findById("1250808601744904192");
+
     }
 
 }
