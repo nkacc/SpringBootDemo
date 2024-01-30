@@ -14,7 +14,8 @@ public class ArtifactService {
     }
 
     public Artifact findById(String artifactId){
-        return artifactRepository.findById(artifactId).get();
+        return artifactRepository.findById(artifactId)
+                .orElseThrow(() -> new ArtifactNotFoundException(artifactId));
     }
 
 }
