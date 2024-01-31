@@ -38,7 +38,7 @@ class ArtifactControllerTest {
     }
 
     @Test
-    void getArtifactById() {
+    void findArtifactById() {
     }
 
 }

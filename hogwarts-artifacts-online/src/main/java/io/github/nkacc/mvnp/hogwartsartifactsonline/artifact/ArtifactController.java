@@ -15,7 +15,7 @@ public class ArtifactController {
     }
 
     @GetMapping("/api/v1/artifacts/{artifactId}")
-    public Result getArtifactById(@PathVariable String artifactId){
+    public Result findArtifactById(@PathVariable String artifactId){
         return null;
     }
 
