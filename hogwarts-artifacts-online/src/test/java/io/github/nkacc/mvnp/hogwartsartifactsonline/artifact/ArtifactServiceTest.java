@@ -21,7 +21,7 @@ class ArtifactServiceTest {
     @Mock // Mock this object, don't use real class.
     ArtifactRepository artifactRepository;
 
-    @InjectMocks
+    //@InjectMocks // Manually doing inject, for fun
     ArtifactService artifactService;
 
     @BeforeEach
@@ -71,6 +71,7 @@ class ArtifactServiceTest {
 
         // When: this section triggers the action or behavior that we want to test.
         /// Testing the required method, by calling it (while mocks injected).
+        artifactService = new ArtifactService(artifactRepository);
         Artifact returnedArtifact = artifactService.findById(fakeArtifact.getId());
 
         // Then: this section asserts that the expected outcome has occurred.
@@ -100,6 +101,7 @@ class ArtifactServiceTest {
            Throwable thrown = catchThrowable(() -> { throw new Exception("boom!"); });
            assertThat(thrown).hasMessageContaining("boom");
         I like `assertThatThrownBy` better */
+        artifactService = new ArtifactService(artifactRepository);
         assertThatThrownBy(
                 () -> artifactService.findById("1250808601744904192")
         ).isInstanceOf(ArtifactNotFoundException.class)
